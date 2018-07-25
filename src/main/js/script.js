@@ -1,6 +1,6 @@
 "use strict";
 
-// import data from "./data"
+import config from "./config.js";
 
 // Model
 
