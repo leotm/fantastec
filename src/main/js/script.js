@@ -7,7 +7,19 @@ const model = {
   events: [],
   keyEventMinutes: [],
   keyEvents: [],
-  events: []
+  events: [],
+  deactivateAll: function () {
+    this.events[0].forEach( (event) => {
+      event.active = 0;
+    })
+  },
+  activate: function (minute) {
+    this.events[0].forEach( (event) => {
+      if (event.minute === minute) {
+        event.active = 1;
+      }
+    })
+  }
 };
 
 // View
@@ -27,14 +39,18 @@ const view = {
     const elm = document.getElementById('keyEvents');
     elm.appendChild(p);
   },
-  createEvent: (minute, type, text) => {
+  createEvent: (minute, type, text, active) => {
     const row = document.createElement('div');
     row.className = 'row live';
     row.id = `commentary-${minute}`
     const col1 = document.createElement('div');
     col1.className = 'col-1';
     const circle = document.createElement('div');
-    circle.className = 'circle';
+    if (active) {
+      circle.className = 'circle active';
+    } else {
+      circle.className = 'circle';
+    }
     circle.textContent = minute;
     col1.appendChild(circle);
     const col2 = document.createElement('div');
@@ -54,18 +70,17 @@ const view = {
     return row;
   },
   renderEvents: () => {
-    const elm = document.getElementById('events');    
+    const elm = document.getElementById('events');
+    while (elm.firstChild) {
+      elm.removeChild(elm.firstChild);
+    }
     model.events[0].forEach( (event) => {
-      elm.appendChild(view.createEvent(event.minute, event.type, event.text));
+      elm.appendChild(view.createEvent(event.minute, event.type, event.text, event.active));
     })
   },
   setupEventListener: function () {
     const keyEvents = document.querySelector('#keyEvents');
-    keyEvents.addEventListener('click', this.clicked)
-  },
-  clicked: (event) => {
-    const elmClicked = event.target;
-    handlers.scroll(elmClicked.id);
+    keyEvents.addEventListener('click', handlers.clicked)
   }
 }
 
@@ -102,6 +117,13 @@ const handlers = {
       model.keyEvents.push(json);
       view.renderKeyEvent(json.type, json.event, json.minute, json.player);
     })
+  },
+  clicked: (event) => {
+    const elmClicked = event.target;
+    handlers.scroll(elmClicked.id);
+    model.deactivateAll();
+    model.activate(parseInt(elmClicked.id));
+    view.renderEvents();
   },
   scroll: function(minute) {
     $('html, body').animate({
