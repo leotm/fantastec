@@ -71,9 +71,11 @@ const view = {
   },
   renderEvents: () => {
     const elm = document.getElementById('events');
-    while (elm.firstChild) {
-      elm.removeChild(elm.firstChild);
-    }
+    elm.innerHTML = `
+    <header>
+      <h4 class="pl-3 pb-2">Live commentary</h5>
+    </header>
+    `;
     model.events[0].forEach( (event) => {
       elm.appendChild(view.createEvent(event.minute, event.type, event.text, event.active));
     })
