@@ -10,11 +10,11 @@ Run `npm i` to install the dependencies and dev dependencies.
 
 ## Development environment
 
-Run `npm run dev` to install the dependencies and dev dependencies.
+Run `npm run dev` launch a dev server.
 
 ## Build
 
-Run npm run build to build the project to the `dist` directory.
+Run `npm run build` to compile the project to the `dist` directory.
 
 ## TODO
 
