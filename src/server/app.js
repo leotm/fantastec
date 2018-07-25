@@ -43,33 +43,27 @@ app.get('/events', (req, res) => {
   }));
 });
 
-app.get('/key-events', (req, res) => {
+app.get('/key-event', (req, res) => {
   const minute = Number(req.query.minute);
   if (minute === 12) {
     res.status(200).send(JSON.stringify({
-      'key-event': {
-        type: 'booking',
-        minute: minute,
-        name: 'Dier'
-      }
+      type: 'booking',
+      minute: minute,
+      name: 'Dier'
     }));
   }
   else if (minute === 17) {
     res.status(200).send(JSON.stringify({
-      'key-event': {
-        type: 'booking',
-        minute: minute,
-        name: 'Alli'
-      }
+      type: 'booking',
+      minute: minute,
+      name: 'Alli'
     }));
   }
   else if (minute === 21) {
     res.status(200).send(JSON.stringify({
-      'key-event': {
-        type: 'booking',
-        minute: minute,
-        name: 'Kane'
-      }
+      type: 'booking',
+      minute: minute,
+      name: 'Kane'
     }));
   }
   else {
