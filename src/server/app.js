@@ -48,22 +48,25 @@ app.get('/key-event', (req, res) => {
   if (minute === 12) {
     res.status(200).send(JSON.stringify({
       type: 'booking',
+      event: 'Yellow',
       minute: minute,
-      name: 'Dier'
+      player: 'Dier'
     }));
   }
   else if (minute === 17) {
     res.status(200).send(JSON.stringify({
       type: 'booking',
+      event: 'Yellow',
       minute: minute,
-      name: 'Alli'
+      player: 'Alli'
     }));
   }
   else if (minute === 21) {
     res.status(200).send(JSON.stringify({
-      type: 'booking',
+      type: 'goal',
+      event: 'Goal',
       minute: minute,
-      name: 'Kane'
+      player: 'Kane'
     }));
   }
   else {
