@@ -12,6 +12,10 @@
   },
   "author": "LeoTM",
   "license": "ISC",
+  "scripts": {
+    "dev": "gulp",
+    "build": "gulp build"
+  },
   "dependencies": {
     "bootstrap": "^4.1.3"
   },
