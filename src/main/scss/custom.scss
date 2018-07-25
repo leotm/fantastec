@@ -24,6 +24,10 @@ html, main {
   border: 1px solid black;
 }
 
+.row.live {
+  padding: 10px 0px;
+}
+
 // Optional Bootstrap
 // TODO: Remove uneccessary components
 @import "node_modules/bootstrap/scss/root";
